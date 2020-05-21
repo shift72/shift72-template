@@ -1,4 +1,4 @@
-# screenplus-template
+# shift72-template
 
 Template repository for off-the-shelf VOD sites using our Kibble/Relish engine based on the generic core-template.
 
