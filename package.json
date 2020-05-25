@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run init && npm-run-all --parallel js:watch js:watch:local css:watch css:watch:local kibble:watch kibble:watch:local json:kibble:lang:watch",
     "css:init": "npm-run-all css:local:backup css:local:variables css:local:custom",
-    "prepare": "git submodule add -f https://github.com/shift72/core-template.git core && git submodule update --init --remote",
+    "prepare": "git rm -r core --ignore-unmatch && git submodule add -f https://github.com/shift72/core-template.git core",
     "init": "node tools/build-output.js --mode=init && npm-run-all css:init css js merge:json:kibble merge:json:lang:AU",
     "build": "npm run kibble:build",
     "publish": "npm run build",
