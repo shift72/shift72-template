@@ -22,6 +22,43 @@ and to manually update the repo to get the latest version run:
 
 `git submodule update --remote`
 
+## Required Changes
+At the very least you will need to make the following changes:
+- Images/logos
+- kibble.json settings (`local/kibble.json`)
+- language strings (`local/site/en_AU.all.json`)
+
+### Images/logos
+
+- `local/site/static/images/common/logo.png`
+Used in main navbar, generally in the top left of every page.
+Should be a transparent PNG that is visible against the main background colour.
+
+- `local/site/static/images/common/logo@2x.png`
+Same as the main logo above, but used for higher density displays like Mac Retinas, or some flagship phones.
+
+- `local/site/static/images/common/app-logo.png`
+Used if the site is to be included in one of our multi-channel apps. Should be a transparent png at 930 x 930.
+
+- `local/site/static/images/common/facebook-image.png`
+Used when sharing links on facebook. The current size of 1200 x 630 should be ok to use.
+Not a transparent png, use the main body background colour instead.
+
+- `local/site/static/images/email/logo.png`
+Used in any emails we send out to users (welcome, purchase receipt, etc) as well as the logo on the admin system signin, forgot passwortd, and accept invite pages.
+Should be a transparent png, that looks visible on a white background.
+Default image has some padding around the outside, but thats not required.
+
+- `local/site/static/favicon.ico`
+Use the logo as a base and either personal skill or an online generator to create this weird format.
+
+### kibble.json changes
+- Change the `name` property to match the name of the site. It should be less than 20 characters long, and does not need to contain the word "template"
+- Change the `siteUrl` property to point to the production site url, so your local development environment will use the films created there.
+
+### language strings
+- Change the `site_owner` property to be the name of the site/client. This is at least used on the footer for the copyright notice.
+
 ## Styling
 
 ### Logo / Images assets
