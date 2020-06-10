@@ -50,7 +50,8 @@ Should be a transparent png, that looks visible on a white background.
 Default image has some padding around the outside, but thats not required.
 
 - `local/site/static/favicon.ico`
-Use the logo as a base and either personal skill or an online generator to create this weird format.
+If the parent site of the VOD site has a favicon, you should copy that one.
+If not, use the logo as a base and either personal skill or an online generator to create a new one.
 
 ### kibble.json changes
 - Change the `name` property to match the name of the site. It should be less than 20 characters long, and does not need to contain the word "template"
