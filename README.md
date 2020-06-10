@@ -33,7 +33,18 @@ Once you have your logos you can set your local variables for the navbar brand. 
 Once you have your logo in, you can use the variables to tweak the header size to suit. If you put in a taller logo, then your going to need more padding for your page content / carousel text etc. Again there are variables for different resolution breakpoints. You can pull your browser in slowly to check that it breaks down nicely at all resolutions. You want it looking nice at mobile / tablet and desktop resolutions.
 
 ### Colours
-To set the colours of the site, you can usually do most by setting the 4 core color styles. primary / secondary / body-bg and body-color. Set those first and see if it suits. if you need to customise further you will find other variables to tweak button colors and such.
+To set the colours of the site, you can usually do most by setting the 4 core color variables:
+- `$primary`
+- `$secondary`
+- `$body-bg`
+- `$body-color`
+
+Set those first and see if it suits. if you need to customise further you will find other variables to tweak button colors and such.
 
 ### Custom css
 Ideally its best to avoid using custom CSS if possible as it could jeopardize updates in the future.
+
+### manifest.json
+The web app manifest is a JSON file that tells the browser about the site and how it should behave when installed on the user's desktop or mobile device. A typical manifest file includes the app name, the icons the app should use, and the URL that should be opened when the app is launched. [more details](https://web.dev/add-manifest/).
+
+Make sure you update the fields in the `manifest.json.jet` to match the sites main colours and logos, and names.

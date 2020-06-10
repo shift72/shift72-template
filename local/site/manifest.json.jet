@@ -1,0 +1,15 @@
+{
+  "short_name": "Shorter version of {{i18n("site_owner")}}",
+  "name": "{{i18n("site_owner")}}",
+  "icons": [
+    {
+      "src": "/images/common/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "Set to $body-bg",
+  "display": "standalone",
+  "theme_color": "Set to $body-color or $primary"
+}
