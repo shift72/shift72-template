@@ -45,7 +45,7 @@ Used when sharing links on facebook. The current size of 1200 x 630 should be ok
 Not a transparent png, use the main body background colour instead.
 
 - `local/site/static/images/email/logo.png`
-Used in any emails we send out to users (welcome, purchase receipt, etc) as well as the logo on the admin system signin, forgot passwortd, and accept invite pages.
+Used in any emails we send out to users (welcome, purchase receipt, etc) as well as the logo on the admin system signin, forgot password, and accept invite pages.
 Should be a transparent png, that looks visible on a white background.
 Default image has some padding around the outside, but thats not required.
 
