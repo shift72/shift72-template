@@ -32,7 +32,7 @@ At the very least you will need to make the following changes:
 
 - `local/site/static/images/common/logo.png`
 Used in main navbar, generally in the top left of every page.
-Should be a transparent PNG that is visible against the main background colour.
+Should be a transparent png that is visible against the main background colour.
 
 - `local/site/static/images/common/logo@2x.png`
 Same as the main logo above, but used for higher density displays like Mac Retinas, or some flagship phones.
