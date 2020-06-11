@@ -48,3 +48,5 @@ Ideally its best to avoid using custom CSS if possible as it could jeopardize up
 The web app manifest is a JSON file that tells the browser about the site and how it should behave when installed on the user's desktop or mobile device. A typical manifest file includes the app name, the icons the app should use, and the URL that should be opened when the app is launched. [more details](https://web.dev/add-manifest/).
 
 Make sure you update the fields in the `manifest.json.jet` to match the sites main colours and logos, and names.
+
+Chrome has a handy dev tool called Lighthouse that can generate a report to tell you how [progressive](https://web.dev/what-are-pwas/) the site is. One of the things it checks is this manifest file to help ensure it can be installed on a device if a user wishes too.
