@@ -45,8 +45,6 @@ Set those first and see if it suits. if you need to customise further you will f
 Ideally its best to avoid using custom CSS if possible as it could jeopardize updates in the future.
 
 ### manifest.json
-The web app manifest is a JSON file that tells the browser about the site and how it should behave when installed on the user's desktop or mobile device. A typical manifest file includes the app name, the icons the app should use, and the URL that should be opened when the app is launched. [more details](https://web.dev/add-manifest/).
+The site is designed to be a [Progressive Web App](https://web.dev/what-are-pwas/) meaning that users can be prompted to install the website to their desktop or mobile device as they would a native app. The [`manifest.json`](https://web.dev/add-manifest/) specifies how it should behave when installed and typically includes the app name, the icons for the app and the URL that should be opened when the app is launched.
 
-Make sure you update the fields in the `manifest.json.jet` to match the sites main colours and logos, and names.
-
-Chrome has a handy dev tool called Lighthouse that can generate a report to tell you how [progressive](https://web.dev/what-are-pwas/) the site is. One of the things it checks is this manifest file to help ensure it can be installed on a device if a user wishes too.
+Chrome has a handy dev tool called Lighthouse that can generate a report to tell you how [progressive](https://web.dev/what-are-pwas/) the site is.
