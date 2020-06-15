@@ -71,7 +71,18 @@ Once you have your logos you can set your local variables for the navbar brand. 
 Once you have your logo in, you can use the variables to tweak the header size to suit. If you put in a taller logo, then your going to need more padding for your page content / carousel text etc. Again there are variables for different resolution breakpoints. You can pull your browser in slowly to check that it breaks down nicely at all resolutions. You want it looking nice at mobile / tablet and desktop resolutions.
 
 ### Colours
-To set the colours of the site, you can usually do most by setting the 4 core color styles. primary / secondary / body-bg and body-color. Set those first and see if it suits. if you need to customise further you will find other variables to tweak button colors and such.
+To set the colours of the site, you can usually do most by setting the 4 core color variables:
+- `$primary`
+- `$secondary`
+- `$body-bg`
+- `$body-color`
+
+Set those first and see if it suits. if you need to customise further you will find other variables to tweak button colors and such.
 
 ### Custom css
 Ideally its best to avoid using custom CSS if possible as it could jeopardize updates in the future.
+
+### manifest.json
+The site is designed to be a [Progressive Web App](https://web.dev/what-are-pwas/) meaning that users can be prompted to install the website to their desktop or mobile device as they would a native app. The [`manifest.json`](https://web.dev/add-manifest/) specifies how it should behave when installed and typically includes the app name, the icons for the app and the URL that should be opened when the app is launched.
+
+Chrome has a handy dev tool called Lighthouse that can generate a report to tell you how [progressive](https://web.dev/what-are-pwas/) the site is.
