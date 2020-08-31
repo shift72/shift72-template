@@ -28,7 +28,7 @@
     "css:watch:local:variables": "chokidar local/site/styles/_variables.scss -c 'npm run css:local:variables'",
     "css:watch:local:custom": "chokidar local/site/styles/*.scss -i local/site/styles/_variables.scss -c 'npm run css:local:custom'",
     "merge:json:kibble": "node tools/merge-json.js output/kibble.json core/kibble.json local/kibble.json",
-    "merge:json:lang": "for file in local/site/**_**.all.json; do filename=$(echo $file | grep -Eo '[^/]+$'); node tools/merge-json.js output/site/$filename core/site/$filename local/site/$filename; done",
+    "merge:json:lang": "for file in local/site/*_*.all.json; do filename=$(echo $file | grep -Eo '[^/]+$'); node tools/merge-json.js output/site/$filename core/site/$filename local/site/$filename; done",
     "json:kibble:lang:watch": "chokidar local/site/en_AU.all.json -c 'npm run merge:json:lang'"
   },
   "author": "",
