@@ -1,5 +1,12 @@
-
 {
+  "support": {
+    "safari": {
+      "ios": "yes"
+    },
+    "chrome": {
+      "android": "yes"
+    }
+  },
   "apps": {
     "android": null,
     "ios": null
