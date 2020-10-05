@@ -1,6 +1,5 @@
 import buble from '@rollup/plugin-buble';
 import { terser } from "rollup-plugin-terser";
-import resolve from '@rollup/plugin-node-resolve';
 
 const production = process.env.NODE_ENV == 'production';
 
@@ -20,7 +19,6 @@ export default {
   },
   plugins: [
     buble({ jsx: 's72.ui.h' }),
-    (production && terser()),
-    resolve()
+    (production && terser())
   ]
 };
