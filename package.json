@@ -13,8 +13,8 @@
     "css": "node-sass ./output/site/styles/main.scss ./output/site/static/styles/main.css",
     "css:watch": "npm run css -- --watch",
     "css:build": "cd output && postcss ./site/static/styles/main.css --use autoprefixer --use cssnano -r",
-    "js": "concat -o ./output/site/static/scripts/main.js ./output/site/static/js/*.js",
-    "js:watch": "watch 'npm run js' ./output/site/static/js --wait=3",
+    "js": "concat -o ./output/site/static/js/rollup-target.js ./output/site/static/js/local.js ./output/site/static/js/main.js ./output/site/static/js/modernizr-custom.js; rollup -c",
+    "js:watch": "watch 'npm run js' ./output/site/static/js --wait=3 --filter=./tools/watch-filter.js",
     "js:watch:local": "chokidar local/site/static/js -c 'merge-dirs local/site/static/js output/site/static/js --overwrite'",
     "js:build": "minify ./output/site/static/js/*.js > ./output/site/static/scripts/main.js",
     "kibble": "cd output && kibble render",
@@ -34,6 +34,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
     "autoprefixer": "^9.6.5",
     "bootstrap": "^4.3.1",
     "chalk": "^2.4.2",
@@ -43,14 +44,21 @@
     "deepmerge": "^4.2.1",
     "del": "^5.1.0",
     "font-awesome": "^4.7.0",
+    "headroom.js": "^0.11.0",
     "fs-extra": "^8.1.0",
     "merge-dirs": "^0.2.1",
     "minify": "^4.1.3",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^7.1.1",
+    "rollup": "^2.23.0",
+    "rollup-plugin-terser": "^6.1.0",
     "s72-kibble": "^0.10.24",
     "watch": "^1.0.2",
     "yargs": "^15.3.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "rollup-plugin-commonjs": "^10.1.0"
   }
 }
