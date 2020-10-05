@@ -16,7 +16,7 @@
     "js": "concat -o ./output/site/static/js/rollup-target.js ./output/site/static/js/local.js ./output/site/static/js/main.js ./output/site/static/js/modernizr-custom.js; rollup -c",
     "js:watch": "watch 'npm run js' ./output/site/static/js --wait=3 --filter=./tools/watch-filter.js",
     "js:watch:local": "chokidar local/site/static/js -c 'merge-dirs local/site/static/js output/site/static/js --overwrite'",
-    "js:build": "minify ./output/site/static/js/*.js > ./output/site/static/scripts/main.js",
+    "js:build": "NODE_ENV=production rollup -c",
     "kibble": "cd output && kibble render",
     "kibble:watch": "cd output && kibble render --watch --port 8081",
     "kibble:watch:local": "chokidar local/site -i local/site/en_AU.all.json -i local/site/styles -i local/site/static/js -i local/site/static/scripts -i local/site/static/styles -c 'node tools/build-output.js --mode=kibble:watch:local && npm-run-all css:local:variables merge:json:lang'",
