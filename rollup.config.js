@@ -1,7 +1,6 @@
 import buble from '@rollup/plugin-buble';
 import { terser } from "rollup-plugin-terser";
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
 
 const production = process.env.NODE_ENV == 'production';
 
@@ -22,11 +21,6 @@ export default {
   plugins: [
     buble({ jsx: 's72.ui.h' }),
     (production && terser()),
-    commonjs({
-      namedExports: {
-        'node_modules/headroom.js/dist/headroom.min.js': ['Headroom']
-      }
-    }),
     resolve()
   ]
 };
