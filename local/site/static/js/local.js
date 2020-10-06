@@ -1,1 +1,4 @@
-// alert('this is an alert 1 2 3 4');
+// CORE IMPORTS - DO NOT DELETE //
+import './main.js';
+import './modernizr-custom.js';
+//////////////////////////////////

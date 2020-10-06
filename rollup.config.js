@@ -5,7 +5,7 @@ const production = process.env.NODE_ENV == 'production';
 
 export default {
   external: ['s72', 's72.ui'],
-  input: 'output/site/static/js/rollup-target.js',
+  input: 'output/site/static/js/local.js',
   output: {
     name: 'template',
     file: 'output/site/static/scripts/main.js',
