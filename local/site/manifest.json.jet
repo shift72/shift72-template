@@ -1,11 +1,16 @@
 {
-  "short_name": "Shorter version of {{i18n("site_owner")}}",
+  "short_name": "{{i18n("site_owner")}}",
   "name": "{{i18n("site_owner")}}",
   "icons": [
     {
       "src": "/images/common/icons-192.png",
       "type": "image/png",
       "sizes": "192x192"
+    },
+    {
+      "src": "/images/common/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "/",
