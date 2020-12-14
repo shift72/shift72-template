@@ -1,5 +1,9 @@
 {
   "name": "shift72-template",
   "version": "0.0.1",
-  "siteUrl": "https://abccinemas.screenplus.co"
+  "siteUrl": "https://abccinemas.screenplus.co",
+  "defaultLanguage": "en",
+  "languages": {
+    "en": "en_AU"
+  },
 }
