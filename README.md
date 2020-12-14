@@ -56,6 +56,9 @@ If not, use the logo as a base and either personal skill or an online generator 
 ### kibble.json changes
 - Change the `name` property to match the name of the site. It should be less than 20 characters long, and does not need to contain the word "template"
 - Change the `siteUrl` property to point to the production site url, so your local development environment will use the films created there.
+- Set the correct defaultLanguage and languages for the particular site.
+  - Don't add all the languages from core/kibble.json, as this will cause unnecassary load when rendering.
+  - Dont delete these values from local/kibble.json as this will cause the site to use the values from core/kibble.json, as this will cause unnecassary load when rendering.
 
 ### language strings
 - Change the `site_owner` property to be the name of the site/client. This is at least used on the footer for the copyright notice.
