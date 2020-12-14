@@ -11,9 +11,10 @@ log = function(message) {
   console.log(chalk.green.bold(message));
 }
 
-var outputFile = process.argv[2];
-var masterFile = process.argv[3];
-var localFile  = process.argv[4];
+var outputFile          = process.argv[2];
+var masterFile          = process.argv[3];
+var localFile           = process.argv[4];
+const ignoredProperties = (process.argv[5] || '').split(',');
 
 if(!fs.existsSync(masterFile)) {
   bail('Core file doesn\'t exist: ' + masterFile);
@@ -37,7 +38,13 @@ else {
   }
 }
 
-var result = merge(masterObject, localObject);
+var result = merge(masterObject, localObject, {
+  customMerge: key => {
+    if (ignoredProperties.includes(key)){
+      return (a, b) => b;
+    }
+  }
+});
 
 fs.writeFile(outputFile, JSON.stringify(result, null, 4), function(error) {
   if(error) {
