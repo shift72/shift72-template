@@ -4,6 +4,6 @@
   "siteUrl": "https://abccinemas.screenplus.co",
   "defaultLanguage": "en",
   "languages": {
-    "en": "en_AU"
+    "en": { "code": "en_AU", "name": "English" }
   }
 }
