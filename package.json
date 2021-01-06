@@ -52,7 +52,7 @@
     "postcss-cli": "^7.1.1",
     "rollup": "^2.23.0",
     "rollup-plugin-terser": "^6.1.0",
-    "s72-kibble": "^0.10.24",
+    "s72-kibble": "^0.15.6",
     "watch": "^1.0.2",
     "yargs": "^15.3.1"
   }
