@@ -7,6 +7,7 @@
     "start": "npm run init && npm-run-all --parallel js:watch js:watch:local css:watch kibble:watch kibble:watch:local json:kibble:lang:watch",
     "init": "node tools/build-output.js --mode=init && npm-run-all css js merge:json:kibble merge:json:lang",
     "build": "npm run kibble:build",
+    "publish": "npm run build && cd output && kibble publish",
 
     "js": "rollup -c",
     "js:watch": "watch 'npm run js' ./output/site/static/js --wait=3",
@@ -16,7 +17,7 @@
     "kibble": "cd output && kibble render",
     "kibble:watch": "cd output && kibble render --watch --port 8081",
     "kibble:watch:local": "chokidar local/site -i local/site/en_AU.all.json -i local/site/styles -i local/site/static/js -i local/site/static/scripts -i local/site/static/styles -c 'node tools/build-output.js --mode=kibble:watch:local && npm-run-all css:local:variables merge:json:lang'",
-    "kibble:build": "npm-run-all init css:build js:build && cd output && kibble publish",
+    "kibble:build": "npm-run-all init css:build js:build",
 
     "css": "node tools/css.js",
     "css:watch": "chokidar local/site/styles/*.scss -c 'npm run css'",
