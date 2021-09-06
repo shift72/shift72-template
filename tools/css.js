@@ -18,7 +18,7 @@ fse.copySync('./local/site/styles', './output/site/styles/local');
 // concat core and local variables files
 let localVars = fse.readFileSync('./output/site/styles/local/_variables.scss');
 let coreVars = fse.readFileSync('./node_modules/@shift72/core-template/site/styles/_variables.scss');
-fse.writeFileSync('./output/site/styles/_variables.scss', [coreVars, localVars].join('\n'));
+fse.writeFileSync('./output/site/styles/_variables.scss', [localVars, coreVars].join('\n'));
 
 // do sass
 let result = sass.renderSync({
