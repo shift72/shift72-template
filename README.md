@@ -4,6 +4,7 @@ Template repository for off-the-shelf VOD sites using our Kibble/Relish engine b
 
 - `npm i` to install node dependencies.
 - `npm start` to run everything.
+- 'npm run publish' to publish the template when you are ready to deploy it to production. 
 
 ## core-template
 
