@@ -11,7 +11,7 @@
 
     "js": "rollup -c",
     "js:watch": "watch 'npm run js' ./output/site/static/js --wait=3",
-    "js:watch:local": "chokidar local/site/static/js -c 'merge-dirs local/site/static/js output/site/static/js --overwrite'",
+    "js:watch:local": "chokidar local/site/static/js -c 'node tools/copy-js'",
     "js:build": "NODE_ENV=production rollup -c",
 
     "kibble": "cd output && kibble render",
@@ -41,7 +41,6 @@
     "del": "^5.1.0",
     "font-awesome": "^4.7.0",
     "fs-extra": "^8.1.0",
-    "merge-dirs": "^0.2.1",
     "minify": "^4.1.3",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^7.1.1",
