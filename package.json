@@ -10,7 +10,7 @@
     "publish": "npm run build && cd output && kibble publish",
 
     "js": "rollup -c",
-    "js:watch": "watch 'npm run js' ./output/site/static/js --wait=3",
+    "js:watch": "chokidar ./output/site/static/js/*.js --throttle 300 -c 'npm run js'",
     "js:watch:local": "chokidar local/site/static/js -c 'node tools/copy-js'",
     "js:build": "NODE_ENV=production rollup -c",
 
@@ -36,7 +36,7 @@
     "bootstrap": "^4.3.1",
     "chalk": "^2.4.2",
     "chokidar-cli": "^3.0.0",
-    "cssnano": "^4.1.10",
+    "cssnano": "^5.0.9",
     "deepmerge": "^4.2.1",
     "del": "^5.1.0",
     "font-awesome": "^4.7.0",
@@ -48,7 +48,6 @@
     "rollup-plugin-terser": "^6.1.0",
     "s72-kibble": "^0.15.19",
     "sass": "^1.37.5",
-    "watch": "^1.0.2",
     "yargs": "^15.3.1"
   }
 }
