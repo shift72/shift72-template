@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "better-npm-audit audit",
     "start": "npm run init && npm-run-all --parallel js:watch js:watch:local css:watch kibble:watch kibble:watch:local json:kibble:lang:watch",
     "init": "node tools/build-output.js --mode=init && npm-run-all css js merge:json:kibble merge:json:lang",
     "build": "npm run kibble:build",
@@ -33,6 +34,7 @@
     "@rollup/plugin-buble": "^0.21.3",
     "@shift72/core-template": "^0.3.8",
     "autoprefixer": "^9.6.5",
+    "better-npm-audit": "^3.4.0",
     "bootstrap": "^4.3.1",
     "chalk": "^2.4.2",
     "chokidar-cli": "^3.0.0",
