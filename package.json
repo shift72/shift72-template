@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "preinstall": "npm-force-resolutions",
     "audit": "better-npm-audit audit",
     "start": "npm run init && npm-run-all --parallel js:watch js:watch:local css:watch kibble:watch kibble:watch:local json:kibble:lang:watch",
     "init": "node tools/build-output.js --mode=init && npm-run-all css js merge:json:kibble merge:json:lang",
@@ -53,14 +52,5 @@
     "s72-kibble": "^0.15.19",
     "sass": "^1.37.5",
     "yargs": "^15.3.1"
-  },
-  "devDependencies": {
-    "npm-force-resolutions": "0.0.10",
-    "ansi-regex": "5.0.1",
-    "json-schema": "0.4.0"
-  },
-  "resolutions": {
-    "ansi-regex": "5.0.1",
-    "json-schema": "0.4.0"
   }
 }
