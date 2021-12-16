@@ -8,7 +8,8 @@
     "start": "npm run init && npm-run-all --parallel js:watch js:watch:local css:watch kibble:watch kibble:watch:local json:kibble:lang:watch",
     "init": "node tools/build-output.js --mode=init && npm-run-all css js merge:json:kibble merge:json:lang",
     "build": "npm run kibble:build",
-    "publish": "npm run build && cd output && kibble publish",
+    "publish": "echo \"Deprecated, use 'npm run deploy'\".",
+    "deploy": "npm run build && cd output && kibble publish",
 
     "js": "rollup -c",
     "js:watch": "chokidar ./output/site/static/js/*.js --throttle 300 -c 'npm run js'",
