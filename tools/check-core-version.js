@@ -4,8 +4,8 @@ const chalk = require('chalk');
 
 const coreDir = './node_modules/@shift72/core-template/';
 const currentCoreVersion = fse.readJsonSync(coreDir + 'package.json').version;
-var latestCoreVersion;
-var options = {
+let latestCoreVersion;
+let options = {
     hostname: 'registry.npmjs.org',
     path: '/-/package/@shift72/core-template/dist-tags',
     method: 'GET'
