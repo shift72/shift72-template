@@ -5,23 +5,26 @@ const chalk = require('chalk');
 
 const timeStampFile = './.s72';
 const coreDir = './node_modules/@shift72/core-template/';
-const currentCoreVersion = fse.readJsonSync(coreDir + 'package.json').version;
+const localCoreVersion = fse.readJsonSync(coreDir + 'package.json').version;
+const dateTimeStandardFormatOrigin = '1/1/1970 0:0:0 UTC';
+const dateTimeMillisecondsOrigin = 0;
+const dateTimeStandardFormatEnd = '1/1/2122 0:0:0 UTC';
+const dateTimeMillisecondsEnd = Date.parse(dateTimeStandardFormatEnd);
 
-const getDateTime = () => {
+const getCurrentDateTime = () => {
     let rawTimeStamp = Date.now();
     let dateObj = new Date(rawTimeStamp);
-    let date = dateObj.getDate();
-    let month = dateObj.getMonth() + 1;
-    let year = dateObj.getFullYear();
-    let hours = dateObj.getHours();
-    let minutes = dateObj.getMinutes();
-    let seconds = dateObj.getSeconds();
-    let dateTime = `${date}/${month}/${year}\n${hours}:${minutes}:${seconds}`;
+    let date = dateObj.getUTCDate();
+    let month = dateObj.getUTCMonth() + 1;
+    let year = dateObj.getUTCFullYear();
+    let hours = dateObj.getUTCHours();
+    let minutes = dateObj.getUTCMinutes();
+    let seconds = dateObj.getUTCSeconds();
+    let dateTime = `${date}/${month}/${year} ${hours}:${minutes}:${seconds} UTC`;
     return dateTime;
 }
 
 let latestCoreVersion;
-let currentTimeStamp;
 let options = {
     hostname: 'registry.npmjs.org',
     path: '/-/package/@shift72/core-template/dist-tags',
@@ -55,17 +58,26 @@ https.get(options, (resp) => {
         try {
             const parsedData = JSON.parse(rawData);
             latestCoreVersion = parsedData['latest'];
+            let currentDateTimeStandardFormat = getCurrentDateTime();
             
+            // AC: .s72 file does not exist
             if (!fs.existsSync(timeStampFile)) {
-                fs.writeFileSync(timeStampFile, getDateTime(), () => {
+                fs.writeFileSync(timeStampFile, currentDateTimeStandardFormat, () => {
                     if (err) throw err;
                 });
             }
 
-            currentTimeStamp = fs.readFileSync(timeStampFile, 'utf8');
-            console.log(currentTimeStamp);
+            let savedTimeStamp = fs.readFileSync(timeStampFile, 'utf8');
 
-            if (currentCoreVersion !== latestCoreVersion) {
+            // AC: The timestamp is invalid
+            let savedDateTimeMilliseconds = Date.parse(savedTimeStamp);
+            if (savedDateTimeMilliseconds < 0 || savedDateTimeMilliseconds >= dateTimeMillisecondsEnd) {
+                fs.writeFileSync(timeStampFile, currentDateTimeStandardFormat, () => {
+                    if (err) throw err;
+                });
+            }         
+
+            if (localCoreVersion !== latestCoreVersion) {
                 return;
             }
         } catch (err) {
