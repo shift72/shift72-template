@@ -3,29 +3,28 @@ const fse = require('fs-extra');
 const https = require('https');
 const chalk = require('chalk');
 
-const timeStampFile = './.s72';
+const timestampFile = './.s72';
 const coreDir = './node_modules/@shift72/core-template/';
 const localCoreVersion = fse.readJsonSync(coreDir + 'package.json').version;
-const dateTimeStandardFormatOrigin = '1/1/1970 0:0:0 UTC';
+
 const dateTimeMillisecondsOrigin = 0;
 const dateTimeStandardFormatEnd = '1/1/2122 0:0:0 UTC';
 const dateTimeMillisecondsEnd = Date.parse(dateTimeStandardFormatEnd);
 const twentyFourHoursMilliseconds = 86400000;
 
 const getCurrentDateTime = () => {
-    let rawTimeStamp = Date.now();
-    let dateObj = new Date(rawTimeStamp);
-    let date = dateObj.getUTCDate();
-    let month = dateObj.getUTCMonth() + 1;
-    let year = dateObj.getUTCFullYear();
-    let hours = dateObj.getUTCHours();
-    let minutes = dateObj.getUTCMinutes();
-    let seconds = dateObj.getUTCSeconds();
-    let dateTime = `${date}/${month}/${year} ${hours}:${minutes}:${seconds} UTC`;
-    return dateTime;
+    let rawTimestamp = Date.now();
+    let date = new Date(rawTimestamp);
+    let dateStr = date.toUTCString();
+    return dateStr;
 }
 
-let latestCoreVersion;
+const updateTimestamp = (timestampFile, currentDateTimeStandardFormat) => {
+    fs.writeFileSync(timestampFile, currentDateTimeStandardFormat, () => {
+        if (err) throw err;
+    });
+}
+
 let options = {
     hostname: 'registry.npmjs.org',
     path: '/-/package/@shift72/core-template/dist-tags',
@@ -39,14 +38,14 @@ https.get(options, (resp) => {
     let error;
 
     if (statusCode !== 200) {
-        error = new Error('Request Failed.\n' + 
-                          `Status Code: ${statusCode} ${statusMessage}`);
+        error = new Error('Request Failed\n' + 
+                          `HTTP Status Code and Message: ${statusCode} ${statusMessage}`);
     } else if (!/^application\/json/.test(contentType)) {
         error = new Error('Invalid content-type.\n' +
                           `Expected application/json but received ${contentType}`);
     }
     if (error) {
-        console.error(error.message);
+        console.error(chalk.red(error.message));
         resp.resume();
         return;
     }
@@ -58,42 +57,32 @@ https.get(options, (resp) => {
     resp.on('end', () => {
         try {
             const parsedData = JSON.parse(rawData);
-            latestCoreVersion = parsedData['latest'];
+            let latestCoreVersion = parsedData['latest'];
             let currentDateTimeStandardFormat = getCurrentDateTime();
             let currentDateTimeMilliseconds = Date.parse(currentDateTimeStandardFormat);
             
-            // AC: .s72 file does not exist
-            if (!fs.existsSync(timeStampFile)) {
-                fs.writeFileSync(timeStampFile, currentDateTimeStandardFormat, () => {
-                    if (err) throw err;
-                });
+            if (!fs.existsSync(timestampFile)) {
+                updateTimestamp(timestampFile, currentDateTimeStandardFormat);
             }
 
-            let savedTimeStamp = fs.readFileSync(timeStampFile, 'utf8');
+            let savedTimestamp = fs.readFileSync(timestampFile, 'utf8');
+            let savedDateTimeMilliseconds = Date.parse(savedTimestamp);
 
-            let savedDateTimeMilliseconds = Date.parse(savedTimeStamp);
-            // AC: The timestamp is invalid
             if (Number.isNaN(savedDateTimeMilliseconds) || savedDateTimeMilliseconds < dateTimeMillisecondsOrigin || savedDateTimeMilliseconds >= dateTimeMillisecondsEnd) {
-                fs.writeFileSync(timeStampFile, currentDateTimeStandardFormat, () => {
-                    if (err) throw err;
-                });
-            } else if (currentDateTimeMilliseconds - savedDateTimeMilliseconds > twentyFourHoursMilliseconds) { // AC: The timestamp is in the past
-                fs.writeFileSync(timeStampFile, currentDateTimeStandardFormat, () => {
-                    if (err) throw err;
-                });
-            } else if (currentDateTimeMilliseconds - savedDateTimeMilliseconds < twentyFourHoursMilliseconds) { // AC: The timestamp is in the future
-                fs.writeFileSync(timeStampFile, currentDateTimeStandardFormat, () => {
-                    if (err) throw err;
-                });
+                updateTimestamp(timestampFile, currentDateTimeStandardFormat);
+            } else if (currentDateTimeMilliseconds - savedDateTimeMilliseconds > twentyFourHoursMilliseconds) {
+                updateTimestamp(timestampFile, currentDateTimeStandardFormat);
             }
 
             if (localCoreVersion !== latestCoreVersion) {
-                return;
+                console.log(chalk.green(`Installed core version: ${localCoreVersion}`));
+                console.log(chalk.green(`Available core version: ${latestCoreVersion}`));
+                console.log(chalk.green('You can update your installed core version if you wish'));
             }
         } catch (err) {
-            console.error(err.message);
+            console.error(chalk.red(err.message));
         }
     });
 }).on('error', (err) => {
-    console.log(`GET error: ${err.message}`);
+    console.log(chalk.red(`GET error: ${err.message}`));
 });
