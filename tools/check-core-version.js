@@ -10,6 +10,7 @@ const dateTimeStandardFormatOrigin = '1/1/1970 0:0:0 UTC';
 const dateTimeMillisecondsOrigin = 0;
 const dateTimeStandardFormatEnd = '1/1/2122 0:0:0 UTC';
 const dateTimeMillisecondsEnd = Date.parse(dateTimeStandardFormatEnd);
+const twentyFourHoursMilliseconds = 86400000;
 
 const getCurrentDateTime = () => {
     let rawTimeStamp = Date.now();
@@ -59,6 +60,7 @@ https.get(options, (resp) => {
             const parsedData = JSON.parse(rawData);
             latestCoreVersion = parsedData['latest'];
             let currentDateTimeStandardFormat = getCurrentDateTime();
+            let currentDateTimeMilliseconds = Date.parse(currentDateTimeStandardFormat);
             
             // AC: .s72 file does not exist
             if (!fs.existsSync(timeStampFile)) {
@@ -69,13 +71,21 @@ https.get(options, (resp) => {
 
             let savedTimeStamp = fs.readFileSync(timeStampFile, 'utf8');
 
-            // AC: The timestamp is invalid
             let savedDateTimeMilliseconds = Date.parse(savedTimeStamp);
-            if (savedDateTimeMilliseconds < 0 || savedDateTimeMilliseconds >= dateTimeMillisecondsEnd) {
+            // AC: The timestamp is invalid
+            if (Number.isNaN(savedDateTimeMilliseconds) || savedDateTimeMilliseconds < dateTimeMillisecondsOrigin || savedDateTimeMilliseconds >= dateTimeMillisecondsEnd) {
                 fs.writeFileSync(timeStampFile, currentDateTimeStandardFormat, () => {
                     if (err) throw err;
                 });
-            }         
+            } else if (currentDateTimeMilliseconds - savedDateTimeMilliseconds > twentyFourHoursMilliseconds) { // AC: The timestamp is in the past
+                fs.writeFileSync(timeStampFile, currentDateTimeStandardFormat, () => {
+                    if (err) throw err;
+                });
+            } else if (currentDateTimeMilliseconds - savedDateTimeMilliseconds < twentyFourHoursMilliseconds) { // AC: The timestamp is in the future
+                fs.writeFileSync(timeStampFile, currentDateTimeStandardFormat, () => {
+                    if (err) throw err;
+                });
+            }
 
             if (localCoreVersion !== latestCoreVersion) {
                 return;
