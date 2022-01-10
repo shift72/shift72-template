@@ -75,8 +75,8 @@ https.get(options, (resp) => {
             }
 
             if (localCoreVersion !== latestCoreVersion) {
-                console.log(chalk.green(`Installed core version: ${localCoreVersion}`));
-                console.log(chalk.green(`Available core version: ${latestCoreVersion}`));
+                console.log(chalk.green(`Installed core version: core-template@${localCoreVersion}`));
+                console.log(chalk.green(`Available core version: core-template@${latestCoreVersion}`));
                 console.log(chalk.green('You can update your installed core version if you wish'));
             }
         } catch (err) {
