@@ -10,21 +10,17 @@
     "build": "npm run kibble:build",
     "publish": "echo \"Deprecated, use 'npm run deploy'\".",
     "deploy": "npm run build && cd output && kibble publish",
-
     "js": "rollup -c",
     "js:watch": "chokidar ./output/site/static/js/*.js --throttle 300 -c 'npm run js'",
     "js:watch:local": "chokidar local/site/static/js -c 'node tools/copy-js'",
     "js:build": "NODE_ENV=production rollup -c",
-
     "kibble": "cd output && kibble render",
     "kibble:watch": "cd output && kibble render --watch --port 8081",
     "kibble:watch:local": "chokidar local/site -i local/site/en_AU.all.json -i local/site/styles -i local/site/static/js -i local/site/static/scripts -i local/site/static/styles -c 'node tools/build-output.js --mode=kibble:watch:local && npm-run-all css:local:variables merge:json:lang'",
     "kibble:build": "npm-run-all init css:build js:build",
-
     "css": "node tools/css.js",
     "css:watch": "chokidar local/site/styles/*.scss -c 'npm run css'",
     "css:build": "cd output && postcss ./site/static/styles/main.css --use autoprefixer --use cssnano -r",
-
     "merge:json:kibble": "node tools/merge-json.js output/kibble.json ./node_modules/@shift72/core-template/kibble.json local/kibble.json 'defaultLanguage,languages'",
     "merge:json:lang": "for file in local/site/*_*.all.json; do filename=$(echo $file | grep -Eo '[^/]+$'); node tools/merge-json.js output/site/$filename ./node_modules/@shift72/core-template/site/$filename local/site/$filename; done",
     "json:kibble:lang:watch": "chokidar local/site/en_AU.all.json -c 'npm run merge:json:lang'"
@@ -33,7 +29,7 @@
   "license": "ISC",
   "dependencies": {
     "@rollup/plugin-buble": "^0.21.3",
-    "@shift72/core-template": "^0.4.0",
+    "@shift72/core-template": "^0.4.1",
     "autoprefixer": "^9.6.5",
     "better-npm-audit": "^3.5.1",
     "bootstrap": "^4.3.1",
