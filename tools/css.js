@@ -15,6 +15,8 @@ let log = message => {
 fse.ensureDirSync('./output/site/styles/local');
 fse.copySync('./local/site/styles', './output/site/styles/local');
 
+fse.ensureFileSync('./output/site/styles/local/_variables.css');
+
 // concat core and local variables files
 let localSassVars = fse.readFileSync('./output/site/styles/local/_variables.scss');
 let localCssVars = fse.readFileSync('./output/site/styles/local/_variables.css');
