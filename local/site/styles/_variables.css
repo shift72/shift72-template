@@ -1,11 +1,12 @@
 /*
-
   CSS variable overrides go in this file.
-
   e.g.
-
   :root {
-    --primary-rgb: 255, 0, 0;
+    --primary-rgb: 53, 160, 168;
+    --secondary-rgb: 76, 211, 221;
+    --body-color-rgb: 255, 255, 255;
+    --body-bg-rgb: 15, 15, 15;
   }
 
+  NOTE: Sass variable overrides prefixed with $ should be added to the _variables.scss file instead
 */

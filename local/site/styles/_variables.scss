@@ -1,9 +1,16 @@
-//--- START local _variables
+//--- START local sass _variables
 
-// Local modifications to _variables go here
+// Local modifications to sass _variables go here
 
 // For example
-// $primary: #f2ff00;
-// $body-bg: #ffffff;
+// $cookie-consent-color: #000;
+// $cookie-consent-link-color: #f00;
 
-//--- END local _variables
+// NOTE: major colour variables are now set via css variables in the _variables.css instead.
+// These include;
+// --primary-rgb: 53, 160, 168;
+// --secondary-rgb: 76, 211, 221;
+// --body-color-rgb: 255, 255, 255;
+// --body-bg-rgb: 15, 15, 15;
+
+//--- END local sass _variables
