@@ -29,7 +29,7 @@
   "license": "ISC",
   "dependencies": {
     "@rollup/plugin-buble": "^0.21.3",
-    "@shift72/core-template": "^0.4.3",
+    "@shift72/core-template": "^0.4.4",
     "autoprefixer": "^9.6.5",
     "better-npm-audit": "^3.5.1",
     "bootstrap": "^4.3.1",
