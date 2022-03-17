@@ -17,7 +17,6 @@
     "kibble": "cd output && kibble render",
     "kibble:start": "mkdir -p ./output/.kibble && test -n \"$npm_config_admin\" && npm run kibble:watch -- --admin || npm run kibble:watch",
     "kibble:watch": "cd output && kibble render --watch --port 8081",
-    "kibble:watch-admin": "cd output && kibble render --watch --admin --port 8081",
     "kibble:watch:local": "chokidar local/site -i local/site/en_AU.all.json -i local/site/styles -i local/site/static/js -i local/site/static/scripts -i local/site/static/styles -c 'node tools/build-output.js --mode=kibble:watch:local && npm-run-all css:local:variables merge:json:lang'",
     "kibble:build": "run-s -l init css:build js:build",
     "css": "node tools/css.js",
