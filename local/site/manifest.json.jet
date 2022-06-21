@@ -1,6 +1,6 @@
 {
-  "short_name": "{{i18n("site_owner")}}",
-  "name": "{{i18n("site_owner")}}",
+  "short_name": "{{site.Config.GetSiteName()}}",
+  "name": "{{site.Config.GetSiteName()}}",
   "icons": [
     {
       "src": "/images/common/icons-192.png",
