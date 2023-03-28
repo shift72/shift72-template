@@ -1,5 +1,5 @@
-import buble from '@rollup/plugin-buble';
-import { terser } from "rollup-plugin-terser";
+import babel from '@rollup/plugin-babel';
+import { terser } from 'rollup-plugin-terser';
 
 const production = process.env.NODE_ENV == 'production';
 
@@ -18,7 +18,14 @@ export default {
     sourcemap: !production
   },
   plugins: [
-    buble({ jsx: 's72.ui.h' }),
+    babel({
+      babelHelpers: 'external',
+      exclude: 'node_modules/**',
+      skipPreflightCheck: true,
+      presets: [
+        [ '@babel/preset-react', { 'pragma': 's72.ui.h' } ]
+      ]
+    }),
     (production && terser())
   ]
 };
