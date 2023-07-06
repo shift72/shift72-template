@@ -48,7 +48,7 @@
     "postcss-cli": "^8.0.0",
     "rollup": "^2.23.0",
     "rollup-plugin-terser": "^6.1.0",
-    "s72-kibble": "0.17.0",
+    "s72-kibble": "0.17.1",
     "sass": "^1.37.5",
     "yargs": "^15.3.1"
   },
