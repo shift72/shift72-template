@@ -31,7 +31,7 @@
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.14.5",
     "@rollup/plugin-babel": "^6.0.4",
-    "@shift72/core-template": "^1.9.29",
+    "@shift72/core-template": "^1.9.31",
     "autoprefixer": "^10.4.21",
     "better-npm-audit": "^3.5.1",
     "bootstrap": "^4.6.1",
