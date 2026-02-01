@@ -31,7 +31,7 @@
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.14.5",
     "@rollup/plugin-babel": "^6.0.4",
-    "@shift72/core-template": "^1.9.31",
+    "@shift72/core-template": "^1.9.32",
     "autoprefixer": "^10.4.21",
     "better-npm-audit": "^3.5.1",
     "bootstrap": "^4.6.1",
@@ -48,7 +48,7 @@
     "postcss-cli": "^11.0.1",
     "rollup": "^2.23.0",
     "rollup-plugin-terser": "^6.1.0",
-    "s72-kibble": "0.17.8",
+    "s72-kibble": "0.17.10",
     "sass": "^1.37.5",
     "yargs": "^15.3.1"
   },
